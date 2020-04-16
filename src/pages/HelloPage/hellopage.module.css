@@ -1,0 +1,23 @@
+.appLogo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  .appLink {
+    color: #61dafb;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .appLogo {
+      animation: appLogoSpin infinite 20s linear;
+    }
+  }
+  
+  @keyframes appLogoSpin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
