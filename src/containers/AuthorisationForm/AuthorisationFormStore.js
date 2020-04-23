@@ -37,6 +37,7 @@ export class AuthorisationFormStore{
         this.successOpen=true
         this.buttonLoader=false
         localStorage.setItem('token',`Bearer ${successMessage["token"]}`)
+        localStorage.setItem('name',successMessage["name"])
         this.history.push(pathes["listRequestsPath"])
     }
     errorLogInCallback=(errorMessage)=>{

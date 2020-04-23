@@ -4,6 +4,7 @@ import classNames from './app.module.css';
 import { AuthorisationPage, RequestListPage } from '../pages';
 import { Route, Switch } from "react-router-dom";
 import pathes from '../utils/routing'
+import {Container} from '../components'
 
 class App extends React.Component {
 
@@ -12,10 +13,12 @@ class App extends React.Component {
     return (
       <div className={classNames.app}>
         <header className={classNames.appHeader}>
+        <Container fixed style={{paddingTop:"10px",height:"100vh"}}> 
           <Switch>
             <Route exact path={pathes["authPath"]} component={AuthorisationPage} />
             <Route exact path={pathes["listRequestsPath"]} component={RequestListPage} />
           </Switch>
+          </Container> 
         </header>
       </div>
     );

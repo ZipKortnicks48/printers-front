@@ -21,7 +21,7 @@ class TableRequest extends React.Component {
             return (
                 <React.Fragment>
                     <ExpansionPanel>
-                        <Box width={800}>
+                        <Box width={"100%"}>
                             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                                 <RequestSearchField onChange={store._searchwordChange} placeholder="Введите название или номер заявки" />
                             </ExpansionPanelSummary>
