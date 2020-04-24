@@ -37,19 +37,23 @@ export class TableRequestStore {
     getCabinets=()=>{
         const callbacks={
             resolve:this.successCabinetCallback,
-            reject:this.errorCabinetCallback,
+            reject:this.errorCallback,
         }
         const token=localStorage.getItem('token')
         this.tableLoader=true
         getRequest("cities/cabinets/",callbacks,token)
+        getRequest("req/",{resolve:this.successReqCallback,reject:this.errorCallback},token)
     }
-
+    successReqCallback=(data)=>{
+        this.reqs=data
+        console.log("Это заявки",this.reqs)
+        this.tableLoader=false;
+    }
     successCabinetCallback=(data)=>{
         this.cabinets=data
-        console.log(this.cabinets)
-        this.tableLoader=false
+        console.log("Это кабинеты",this.cabinets)
     }
-    errorCabinetCallback=(errorMessage)=>{
+    errorCallback=(errorMessage)=>{
         console.log(`все в гамне ${JSON.stringify(errorMessage)}`)
         this.errorOpen=true
         this.tableLoader=false

@@ -1,6 +1,6 @@
 import React from 'react'
 import { TableRequest } from '../../containers/index'
-import { Box, Button } from '../../components'
+import { Box, Button } from '@material-ui/core'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const RequestListPage = (props) => {
     return (
@@ -15,7 +15,6 @@ const RequestListPage = (props) => {
                     }}><ExitToAppIcon fontSize="small" /></Button>
                 </Box>
             </Box>
-
             <TableRequest />
         </React.Fragment>)
 }

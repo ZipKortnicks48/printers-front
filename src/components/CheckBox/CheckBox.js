@@ -1,6 +1,6 @@
 
 import React from 'react'
-import {FormControlLabel,Checkbox,Box} from '../../components'
+import {FormControlLabel,Checkbox,Box} from '@material-ui/core'
 const CheckBox = (props) => {
     return (
         <Box className={props.className}>

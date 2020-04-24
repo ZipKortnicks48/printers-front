@@ -1,5 +1,6 @@
 import React from 'react'
-import {Alert,Snackbar} from '../index'
+import {Snackbar} from '@material-ui/core'
+import {Alert} from '@material-ui/lab' 
 const MessageSnackbar =(props)=> {
         return (
         <Snackbar open={props.open} autoHideDuration={1000} onClose={props.onClose}>
