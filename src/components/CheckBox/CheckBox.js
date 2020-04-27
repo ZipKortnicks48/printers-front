@@ -10,6 +10,7 @@ const CheckBox = (props) => {
                                 <Checkbox
                                     onChange={props.onChange}
                                     color="primary"
+                                    checked={props.checked}
                                 />
                             }
                             label={props.label}

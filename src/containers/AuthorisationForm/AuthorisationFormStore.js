@@ -1,4 +1,4 @@
-import { observable, computed, action, decorate } from "mobx"
+import { observable,  action, decorate } from "mobx"
 import {postRequest} from '../../utils/requests'
 import pathes from '../../utils/routing'
 export class AuthorisationFormStore{
@@ -18,7 +18,6 @@ export class AuthorisationFormStore{
     _logInClick=(history)=>{
         this.buttonLoader=true
         this.history=history
-        console.log('Запрос авторизации')
         const callbacks={
             resolve:this.successLogInCallback,
             reject:this.errorLogInCallback,
@@ -40,9 +39,10 @@ export class AuthorisationFormStore{
         localStorage.setItem('name',successMessage["name"])
         this.history.push(pathes["listRequestsPath"])
     }
-    errorLogInCallback=(errorMessage)=>{
-        console.log(`все в гамне ${JSON.stringify(errorMessage)}`)
+    errorLogInCallback=(errorMessage, code)=>{
         this.errorOpen=true
+        localStorage.removeItem('token')
+        localStorage.removeItem('name')
         this.buttonLoader=false
     }
     

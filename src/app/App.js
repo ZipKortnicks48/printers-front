@@ -1,5 +1,4 @@
 import React from 'react';
-import { logo } from '../source'
 import classNames from './app.module.css';
 import { AuthorisationPage, RequestListPage } from '../pages';
 import { Route, Switch } from "react-router-dom";

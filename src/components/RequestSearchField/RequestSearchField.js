@@ -10,8 +10,9 @@ const RequestSearchField = (props) => {
                 onChange={props.onChange}
                 placeholder={props.placeholder}
                 inputProps={{ 'aria-label': 'search google maps' }}
+                value={props.value}
             />
-            <IconButton type="submit"  aria-label="search">
+            <IconButton type="submit" onClick={props.onClick}  aria-label="search">
                 <SearchIcon />
             </IconButton>
         </React.Fragment>

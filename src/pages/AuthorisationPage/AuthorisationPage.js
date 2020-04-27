@@ -3,7 +3,7 @@ import {AuthorisationForm} from '../../containers/index'
 export default class AuthorisationPage extends React.Component {
     
     componentDidMount=()=>{
-        if(localStorage.getItem('token')!=null){
+        if(localStorage.getItem('token')!==null){
             this.props.history.push("requests")
         }
     }

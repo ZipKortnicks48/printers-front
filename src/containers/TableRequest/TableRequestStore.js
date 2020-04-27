@@ -1,81 +1,78 @@
-import { observable, computed, action, decorate } from "mobx"
-import { postRequest } from '../../utils/requests'
-import pathes from '../../utils/routing'
-import {getRequest} from "../../utils/requests"
+import { observable,  action, decorate } from "mobx"
+import { getRequest } from "../../utils/requests"
 export class TableRequestStore {
     searchword = "";
-    date = "";
+    date = null;
     cabinet = "";
-    cabinets=[];
+    cabinets = [];
     showClosedRequests = false;
     tableLoader = false;
-    
+    reqs = [];
+    history={};
+    errorText="";
+    errorOpen=false;
     _searchwordChange = (e) => {
-        console.log(e.target.value)
         this.searchword = e.target.value
     }
+
+    _filterClick = async () => {
+        this.tableLoader = true
+        this.reqs = []
+        let url = "req/?"
+        if (this.searchword !== "") url = url + "search=" + this.searchword + "&"
+        if (this.date !== null) url = url + "date=" + this.date + "&"
+        if (this.cabinet !== "") url = url + "cabinet=" + this.cabinet + "&"
+        if (this.showClosedRequests) url=url+"status="+this.showClosedRequests
+        const token = localStorage.getItem('token')
+        this.searchword=""
+        await getRequest(url, { resolve: this.successReqCallback, reject: this.errorCallback }, token)
+        this.tableLoader=false;
+    }
     _dateChange = (date) => {
+        if (date !== null) {
         this.date = date
-        let month = '' + (date.getMonth() + 1)
-        let day = '' + date.getDate()
-        let year = date.getFullYear()
-        if (month.length < 2)
-            month = '0' + month;
-        if (day.length < 2)
-            day = '0' + day;
-        this.date=`${year+"-"+month+"-"+day}`
-        console.log(this.date)
+            let month = '' + (date.getMonth() + 1)
+            let day = '' + date.getDate()
+            let year = date.getFullYear()
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+            this.date = `${year + "-" + month + "-" + day}`
+        }else{this.date=date}
     }
     _cabinetChange = (e) => {
-        console.log(e.target.value)
         this.cabinet = e.target.value
     }
     _showClosedRequests = (e) => {
-        console.log(e.target.checked)
         this.showClosedRequests = e.target.checked
     }
-    getCabinets=()=>{
-        const callbacks={
-            resolve:this.successCabinetCallback,
-            reject:this.errorCallback,
-        }
-        const token=localStorage.getItem('token')
-        this.tableLoader=true
-        getRequest("cities/cabinets/",callbacks,token)
-        getRequest("req/",{resolve:this.successReqCallback,reject:this.errorCallback},token)
+    _errorClose=()=>{
+        this.errorOpen=false;
     }
-    successReqCallback=(data)=>{
-        this.reqs=data
-        console.log("Это заявки",this.reqs)
-        this.tableLoader=false;
-    }
-    successCabinetCallback=(data)=>{
-        this.cabinets=data
-        console.log("Это кабинеты",this.cabinets)
-    }
-    errorCallback=(errorMessage)=>{
-        console.log(`все в гамне ${JSON.stringify(errorMessage)}`)
-        this.errorOpen=true
+    getCabinets = async () => {
+        const token = localStorage.getItem('token')
+        this.tableLoader = true
+        await getRequest("cities/cabinets/", { resolve: this.successCabinetCallback, reject: this.errorCallback }, token)
+        await getRequest("req/", { resolve: this.successReqCallback, reject: this.errorCallback }, token)
         this.tableLoader=false
     }
-    
-
-    _onSearchClick = (e) => {
-        
+    successReqCallback = (data) => {
+        this.reqs = data
     }
-
-    successLogInCallback = (successMessage) => {
-        this.successOpen = true
-        this.buttonLoader = false
-        localStorage.setItem('token', `Bearer ${successMessage["token"]}`)
-        this.history.push(pathes["listRequestsPath"])
+    successCabinetCallback = (data) => {
+        this.cabinets = data
     }
-    errorLogInCallback = (errorMessage) => {
-        console.log(`все в гамне ${JSON.stringify(errorMessage)}`)
+    errorCallback = (errorMessage, code) => {
+        console.log(code)
+        if(code===401){
+            localStorage.removeItem('token')
+            localStorage.removeItem('name')
+            this.history.push("/")
+        }
+        this.errorText=errorMessage
         this.errorOpen = true
-        this.buttonLoader = false
     }
-
 
 }
 decorate(TableRequestStore,
@@ -85,8 +82,14 @@ decorate(TableRequestStore,
         _cabinetChange: action,
         _showClosedRequests: action,
         _onSearchClick: action,
+        _errorClose:action,
         tableLoader: observable,
         searchword: observable,
+        date: observable,
+        errorOpen:observable,
+        showClosedRequests:observable,
+        cabinet:observable,
+        
     }
 )
 
