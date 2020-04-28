@@ -6,7 +6,7 @@ export const TableReqItem = (props) => {
 
     if (props.items.length === 0) {
         return (<React.Fragment>
-            <Box>
+            <Box p={2}>
                 <Typography color="textSecondary">{"Пусто"}</Typography>
             </Box>
         </React.Fragment>)
@@ -17,7 +17,7 @@ export const TableReqItem = (props) => {
                 {props.items.map(
                     (item, index) => {
                         return (
-                            <ListItem key={`${index}-table-req-item`} button divider={index !== props.items.length - 1}>
+                            <ListItem key={`${index}-table-req-item`} button divider={index !== (props.items.length - 1)}>
                                 <Box display="flex" flexDirection="column">
                                     <ListItemText primary={`${item["id"]} ${item["shortname"]}`} />
                                     <Typography variant="caption" color="textSecondary">{item["date"]}</Typography></Box>

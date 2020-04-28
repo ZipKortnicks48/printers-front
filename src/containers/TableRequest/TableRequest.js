@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react'
-import { SelectComponent, RequestSearchField, DatePicker, CheckBox, TableReqItem, MessageSnackbar} from '../../components'
+import { SelectComponent, RequestSearchField, DatePicker, CheckBox, TableReqItem, MessageSnackbar } from '../../components'
 import {
     ExpansionPanelDetails, ExpansionPanelSummary, ExpansionPanel, CircularProgress, Box, Paper,
     List, FormControlLabel
@@ -9,10 +9,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { withRouter } from "react-router";
 import classNames from "./tablerequest.module.css"
 class TableRequest extends React.Component {
+
+
     componentDidMount = () => {
         console.log("mount")
         let store = this.props.TableRequestStore
-        store.history=this.props.history
+        store.history = this.props.history
         store.getCabinets()
     }
     render() {
@@ -27,7 +29,7 @@ class TableRequest extends React.Component {
                                     <FormControlLabel
                                         onClick={(event) => event.stopPropagation()}
                                         onFocus={(event) => event.stopPropagation()}
-                                        control={<RequestSearchField 
+                                        control={<RequestSearchField
                                             onClick={store._filterClick}
                                             onChange={store._searchwordChange}
                                             value={store.searchword}
@@ -38,7 +40,7 @@ class TableRequest extends React.Component {
                                 </ExpansionPanelSummary>
                             </Box>
                             <ExpansionPanelDetails>
-                                <DatePicker value={store.date} onChange={store._dateChange} />
+                                <DatePicker label="Укажите дату" value={store.date} onChange={store._dateChange} />
                                 <SelectComponent value={store.cabinet} items={store.cabinets} onChange={store._cabinetChange} label="Кабинет" className={classNames.select} />
                                 <CheckBox checked={store.showClosedRequests} onChange={store._showClosedRequests} className={classNames.checkbox} label="Отобразить не закрытые заявки" />
                             </ExpansionPanelDetails>

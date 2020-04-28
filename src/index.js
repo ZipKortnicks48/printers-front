@@ -7,9 +7,11 @@ import { Provider } from "mobx-react"
 import * as serviceWorker from './serviceWorker';
 import AuthorisationFormStore from './containers/AuthorisationForm/AuthorisationFormStore'
 import TableRequestStore from './containers/TableRequest/TableRequestStore'
+import DialogCreateReqStore from './containers/DialogCreateReq/DialogCreateReqStore'
 const stores = {
   AuthorisationFormStore,
   TableRequestStore,
+  DialogCreateReqStore,
 }
 ReactDOM.render(
   <BrowserRouter>

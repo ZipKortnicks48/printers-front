@@ -8,15 +8,13 @@ import {Container} from '@material-ui/core'
 class App extends React.Component {
   render() {
     return (
-      <div className={classNames.app} >
-        <header className={classNames.appHeader}>
+      <div className={classNames.appBody} >
         <Container fixed style={{paddingTop:"10px",height:"100vh"}}> 
           <Switch>
             <Route exact path={pathes["authPath"]} component={AuthorisationPage} />
             <Route exact path={pathes["listRequestsPath"]} component={RequestListPage} />
           </Switch>
-          </Container> 
-        </header>
+          </Container>  
       </div>
     );
   }

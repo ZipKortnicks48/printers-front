@@ -18,7 +18,7 @@ const DatePicker = (props) => {
                     // variant="inline"
                     format="yyyy-MM-dd"
                     margin="normal"
-                    label="Укажите дату"
+                    label={props.label}
                     onChange={props.onChange}
                     value={date}
                 />
