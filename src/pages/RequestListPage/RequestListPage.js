@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { TableRequest } from '../../containers/index'
 import { Box, Button, Dialog } from '@material-ui/core'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -33,12 +34,12 @@ class RequestListPage extends React.Component {
                 <Button onClick={this._modalOpen} variant="contained" color="primary">Создать новую заявку</Button>
             </Box>
             <Dialog open={this.state.modalOpen} onClose={this._modalClose}>
-               <Box  width={300}>
+               <Box>
                 <DialogCreateReq close={this._modalClose}/>
                 </Box> 
             </Dialog>
 
-        </React.Fragment >)
+        </React.Fragment>)
     }
 }
 export default withRouter(RequestListPage);

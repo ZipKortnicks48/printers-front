@@ -24,7 +24,6 @@ export class TableRequestStore {
         if (this.cabinet !== "") url = url + "cabinet=" + this.cabinet + "&"
         if (this.showClosedRequests) url=url+"status="+this.showClosedRequests
         const token = localStorage.getItem('token')
-        this.searchword=""
         await getRequest(url, { resolve: this.successReqCallback, reject: this.errorCallback }, token)
         this.tableLoader=false;
     }

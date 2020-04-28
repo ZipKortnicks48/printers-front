@@ -1,18 +1,19 @@
 import React from 'react'
-import { Typography, Button, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Box } from '@material-ui/core'
-import { CheckBox, DatePicker, SelectComponent } from '../../components/index'
+import {inject,observer} from 'mobx-react'
+import { Typography, Button, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Box, CircularProgress } from '@material-ui/core'
+import { CheckBox, DatePicker, SelectComponent, MessageSnackbar } from '../../components/index'
+
  class DialogCreateReq extends React.Component {
-    state={
-        name:"",
-        text:"",
-        cabinet:"",
-        deadline:null,
-        checkout:false
+    
+    store=this.props.DialogCreateReqStore
+    componentDidMount=()=>{
+        this.store.history=this.props.history
+        this.store.getCabinets()
     }
     
     render() {
-        const store=this.props.DialogCreateReqStore
-        return (
+        
+        if(this.store.loader){return(<React.Fragment><DialogContent><CircularProgress/></DialogContent></React.Fragment>)}else{return (
             <React.Fragment>
                 <DialogTitle>Создание новой заявки</DialogTitle>
                 <DialogContent>
@@ -24,6 +25,7 @@ import { CheckBox, DatePicker, SelectComponent } from '../../components/index'
                         margin="dense"
                         label="Название заявки"
                         fullWidth
+                        onChange={this.store._onNameChange}
                     />
                     <Box display="flex" flexDirection="column">
                     <Box mt={2} mb={2}>
@@ -33,25 +35,29 @@ import { CheckBox, DatePicker, SelectComponent } from '../../components/index'
                         multiline
                         rows={6}
                         variant="outlined"
+                        onChange={this.store._onDescChange}
                     />
                     </Box>
-                    <Box mb={2}>
+                    <Box>
                     <Typography  variant="caption">Выберите кабинет</Typography>
                     </Box>
-                    {/* <SelectComponent items={this.props.items} label="cabinet" /> */}
-                    <DatePicker label="Крайний срок" value={this.state.deadline}/>
-                    <CheckBox label="Запланировать выезд"></CheckBox>
+                    <SelectComponent  items={this.store.cabinets} onChange={this.store._onCabinetChange} value={this.store.cabinet} label="Кабинет" />
+                    <DatePicker label="Крайний срок" onChange={this.store._onDeadlineChange} value={this.store.deadline}/>
+                    <CheckBox onChange={this.store._onCheckoutChange} value={this.store.checkout} label="Запланировать выезд"></CheckBox>
                     </Box>
+                    <MessageSnackbar open={this.store.errorOpen} severity="error" onClose={this.store._errorClose} message={this.store.errorText} />
+                    <MessageSnackbar open={this.store.successOpen} severity="success" onClose={this.store._successClose} message="Заявка отправлена." />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.props.close} color="primary">
                         Отмена
                     </Button>
-                    <Button onClick={this.props.close} color="primary">
+                    <Button onClick={this.store._responseClick} color="primary">
                         Создать
                     </Button>
                 </DialogActions></React.Fragment>
         )
+        }
     }
 }
 export default inject('DialogCreateReqStore')(observer(DialogCreateReq));
