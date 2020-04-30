@@ -8,10 +8,12 @@ import * as serviceWorker from './serviceWorker';
 import AuthorisationFormStore from './containers/AuthorisationForm/AuthorisationFormStore'
 import TableRequestStore from './containers/TableRequest/TableRequestStore'
 import DialogCreateReqStore from './containers/DialogCreateReq/DialogCreateReqStore'
+import RequestBodyStore from './containers/RequestBody/RequestBodyStore'
 const stores = {
   AuthorisationFormStore,
   TableRequestStore,
   DialogCreateReqStore,
+  RequestBodyStore,
 }
 ReactDOM.render(
   <BrowserRouter>

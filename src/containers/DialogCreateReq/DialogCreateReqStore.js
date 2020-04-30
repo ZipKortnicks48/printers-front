@@ -52,7 +52,7 @@ class DialogCreateReqStore {
             localStorage.removeItem('name')
             this.history.push("/")
         }
-        this.errorText = errorMessage
+        this.errorText = `Ошибка отправки ${code}`
         this.errorOpen = true
     }
     _responseClick = async () => {
@@ -61,7 +61,7 @@ class DialogCreateReqStore {
             'description': this.description,
             'cabinet': this.cabinet,
             'deadline': this.deadline,
-            'checkout': this.checkout
+            'checkout': this.checkout,
         }
         const token = localStorage.getItem('token')
         this.loader = true

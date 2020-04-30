@@ -8,6 +8,7 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { withRouter } from "react-router";
 import classNames from "./tablerequest.module.css"
+import {Pagination} from "@material-ui/lab"
 class TableRequest extends React.Component {
 
 
@@ -17,9 +18,13 @@ class TableRequest extends React.Component {
         store.history = this.props.history
         store.getCabinets()
     }
+    _onReqClick=(id)=>{
+        this.props.history.push(`req/${id}`)
+    }
+    store = this.props.TableRequestStore
     render() {
-        let store = this.props.TableRequestStore
-        if (store.tableLoader) { return (<CircularProgress />) } else {
+        console.log("уточнение страницы",this.store.page)
+        if (this.store.tableLoader) { return (<CircularProgress />) } else {
             return (
                 <React.Fragment>
                     <Box mb={2}>
@@ -30,9 +35,9 @@ class TableRequest extends React.Component {
                                         onClick={(event) => event.stopPropagation()}
                                         onFocus={(event) => event.stopPropagation()}
                                         control={<RequestSearchField
-                                            onClick={store._filterClick}
-                                            onChange={store._searchwordChange}
-                                            value={store.searchword}
+                                            onClick={this.store._filterClick}
+                                            onChange={this.store._searchwordChange}
+                                            value={this.store.searchword}
                                             placeholder="Введите название или номер заявки" />
                                         }
                                         style={{ width: '100%' }}
@@ -40,18 +45,19 @@ class TableRequest extends React.Component {
                                 </ExpansionPanelSummary>
                             </Box>
                             <ExpansionPanelDetails>
-                                <DatePicker label="Укажите дату" value={store.date} onChange={store._dateChange} />
-                                <SelectComponent value={store.cabinet} items={store.cabinets} onChange={store._cabinetChange} label="Кабинет" className={classNames.select} />
-                                <CheckBox checked={store.showClosedRequests} onChange={store._showClosedRequests} className={classNames.checkbox} label="Отобразить не закрытые заявки" />
+                                <DatePicker label="Укажите дату" value={this.store.date} onChange={this.store._dateChange} />
+                                <SelectComponent value={this.store.cabinet} items={this.store.cabinets} onChange={this.store._cabinetChange} label="Кабинет" className={classNames.select} />
+                                <CheckBox checked={this.store.showClosedRequests} onChange={this.store._showClosedRequests} className={classNames.checkbox} label="Отобразить не закрытые заявки" />
                             </ExpansionPanelDetails>
                         </ExpansionPanel>
                     </Box>
                     <Paper>
                         <List component="nav" aria-label="mailbox folders">
-                            <TableReqItem items={store.reqs} />
+                            <TableReqItem onClick={this._onReqClick} items={this.store.reqs} />
                         </List>
                     </Paper>
-                    <MessageSnackbar open={store.errorOpen} severity="error" onClose={store._errorClose} message={store.errorText} />
+                    <Pagination page={this.store.page} onChange={this.store._pageChange} count={this.store.count_pages} shape="rounded" />
+                    <MessageSnackbar open={this.store.errorOpen} severity="error" onClose={this.store._errorClose} message={this.store.errorText} />
                 </React.Fragment>
             )
         }

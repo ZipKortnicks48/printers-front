@@ -18,7 +18,7 @@ async function postRequest(url, data = {},callbacks,token="") {
     {
         resolve (await response.json()) 
     }else{
-        reject(await response.json())
+        reject(await response.json(),response.status)
     }
 }
 

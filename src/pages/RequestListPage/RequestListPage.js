@@ -35,7 +35,7 @@ class RequestListPage extends React.Component {
             </Box>
             <Dialog open={this.state.modalOpen} onClose={this._modalClose}>
                <Box>
-                <DialogCreateReq close={this._modalClose}/>
+                <DialogCreateReq history={this.props.history} close={this._modalClose}/>
                 </Box> 
             </Dialog>
 

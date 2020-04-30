@@ -3,7 +3,7 @@ import { ListItem, ListItemText, Box, Typography, ListItemSecondaryAction } from
 import { DriveEta } from '@material-ui/icons'
 import { CheckCircle } from '@material-ui/icons'
 export const TableReqItem = (props) => {
-
+    console.log("отрисовка")
     if (props.items.length === 0) {
         return (<React.Fragment>
             <Box p={2}>
@@ -17,7 +17,7 @@ export const TableReqItem = (props) => {
                 {props.items.map(
                     (item, index) => {
                         return (
-                            <ListItem key={`${index}-table-req-item`} button divider={index !== (props.items.length - 1)}>
+                            <ListItem key={`${index}-table-req-item`} onClick={()=>props.onClick(item['id'])} button divider={index !== (props.items.length - 1)}>
                                 <Box display="flex" flexDirection="column">
                                     <ListItemText primary={`${item["id"]} ${item["shortname"]}`} />
                                     <Typography variant="caption" color="textSecondary">{item["date"]}</Typography></Box>
