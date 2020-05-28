@@ -8,6 +8,8 @@ import DatePicker from './DatePicker/DatePicker'
 import CheckBox from './CheckBox/CheckBox'
 import SelectComponent from './SelectComponent/SelectComponent'
 import {TableReqItem} from './TableReqItem/TableReqItem'
-
-export {MessageSnackbar,RequestSearchField,DatePicker,CheckBox,SelectComponent,TableReqItem
+import {CheckoutFlag} from './CheckoutFlag/CheckoutFlag'
+import {FinishedFlag} from './FinishedFlag/FinishedFlag'
+import {ActualReqFlag} from './ActualReqFlag/ActualReqFlag'
+export {MessageSnackbar,RequestSearchField,DatePicker,CheckBox,SelectComponent,TableReqItem,ActualReqFlag,CheckoutFlag,FinishedFlag
 }

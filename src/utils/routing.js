@@ -1,9 +1,9 @@
 const pathes={
     authPath:"/",
     listRequestsPath:"/requests",
-    requestPath:"/requests:id",
+    requestPath:"/requests/:number",
     makeRequestPath:"/makerequest",
-    requestPath:"/req/:number",
+    
 }
 
 export default pathes;

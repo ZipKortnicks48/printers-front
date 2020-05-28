@@ -19,7 +19,7 @@ class TableRequest extends React.Component {
         store.getCabinets()
     }
     _onReqClick=(id)=>{
-        this.props.history.push(`req/${id}`)
+        this.props.history.push(`requests/${id}`)
     }
     store = this.props.TableRequestStore
     render() {
