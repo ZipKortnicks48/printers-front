@@ -44,9 +44,20 @@ import { CheckBox, DatePicker, SelectComponent, MessageSnackbar } from '../../co
                     <SelectComponent  items={this.store.cabinets} onChange={this.store._onCabinetChange} value={this.store.cabinet} label="Кабинет" />
                     <DatePicker label="Крайний срок" onChange={this.store._onDeadlineChange} value={this.store.deadline}/>
                     <CheckBox onChange={this.store._onCheckoutChange} value={this.store.checkout} label="Запланировать выезд"></CheckBox>
+                    <Box mb={1}>
+                    <Typography   variant="caption">Укажите телефон, что мы могли Вам перезвонить</Typography>
+                    </Box>
+                    <TextField
+                        fullWidth
+                        label="Телефон для связи"
+                        rows={6}
+                        variant="outlined"
+                        onChange={this.store._onPhoneChange}
+                    />
                     </Box>
                     <MessageSnackbar open={this.store.errorOpen} severity="error" onClose={this.store._errorClose} message={this.store.errorText} />
                     <MessageSnackbar open={this.store.successOpen} severity="success" onClose={this.store._successClose} message="Заявка отправлена." />
+
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.props.close} color="primary">

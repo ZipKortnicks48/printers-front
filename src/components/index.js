@@ -11,5 +11,7 @@ import {TableReqItem} from './TableReqItem/TableReqItem'
 import {CheckoutFlag} from './CheckoutFlag/CheckoutFlag'
 import {FinishedFlag} from './FinishedFlag/FinishedFlag'
 import {ActualReqFlag} from './ActualReqFlag/ActualReqFlag'
-export {MessageSnackbar,RequestSearchField,DatePicker,CheckBox,SelectComponent,TableReqItem,ActualReqFlag,CheckoutFlag,FinishedFlag
+import {ProcessReqFlag} from './ProcessReqFlag/ProcessReqFlag'
+export {MessageSnackbar,RequestSearchField,DatePicker,CheckBox,SelectComponent,TableReqItem,ActualReqFlag,CheckoutFlag,FinishedFlag,
+    ProcessReqFlag,
 }

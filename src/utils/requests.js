@@ -1,6 +1,6 @@
 import noop from 'lodash/noop';
 
-const SERVER_NAME = "http://26.222.176.39:8000/"
+const SERVER_NAME = "http://127.0.0.1:8000/"
 
 async function postRequest(url, data = {},callbacks,token="") {
     // Default options are marked with 

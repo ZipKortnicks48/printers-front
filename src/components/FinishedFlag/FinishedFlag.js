@@ -9,6 +9,7 @@ export const FinishedFlag = (props) => {
                 <Typography style={{ color: "green" }} >{`Выполнена ${props.item["finishdate"]}`}</Typography>
                 <CheckCircle style={{ color: "green" }} />
             </Box>
+            
         </React.Fragment>
     )
 }

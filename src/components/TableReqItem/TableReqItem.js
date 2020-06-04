@@ -2,7 +2,7 @@ import React from 'react'
 import { ListItem, ListItemText, Box, Typography, ListItemSecondaryAction } from '@material-ui/core'
 import { DriveEta } from '@material-ui/icons'
 import { CheckCircle } from '@material-ui/icons'
-import {CheckoutFlag,FinishedFlag} from '../../components/index'
+import {CheckoutFlag,FinishedFlag,ActualReqFlag,ProcessReqFlag} from '../../components/index'
 export const TableReqItem = (props) => {
     console.log("отрисовка")
     if (props.items.length === 0) {
@@ -25,7 +25,8 @@ export const TableReqItem = (props) => {
                                 <ListItemSecondaryAction>
                                     <Box display="flex">
                                         {item["checkout"] && <CheckoutFlag/>}
-                                        {item["status"] && <FinishedFlag item={item}/>}
+                                        {item["status"]==="3" && <FinishedFlag item={item}/>}
+                                        {item["status"]==="2" && <ProcessReqFlag  item={item}/>}
                                     </Box>
                                 </ListItemSecondaryAction>
                             </ListItem>

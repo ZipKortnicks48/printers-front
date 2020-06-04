@@ -1,7 +1,7 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 import { CircularProgress, Typography, Box } from '@material-ui/core'
-import { CheckoutFlag, FinishedFlag, ActualReqFlag } from '../../components'
+import { CheckoutFlag, FinishedFlag, ActualReqFlag , ProcessReqFlag, } from '../../components'
 import {Button} from '@material-ui/core'
 class RequestBody extends React.Component {
 
@@ -26,7 +26,9 @@ class RequestBody extends React.Component {
                     </Box>
                     <Box fullWidth display="flex" justifyContent="flex-end"><Box display="flex" flexDirection="column">
                         {this.store.data["checkout"]&&<Box mb={2}><CheckoutFlag /></Box>}
-                        {this.store.data["status"]?<Box mb={2}><FinishedFlag item={this.store.data} /></Box>:<Box><ActualReqFlag /></Box>}
+                                        {this.store.data["status"]==="3" && <Box mb={2}><FinishedFlag desc={true} item={this.store.data}/></Box>}
+                                        {this.store.data["status"]==="2" && <Box mb={2}><ProcessReqFlag desc={true}  item={this.store.data}/></Box>}
+                                        {this.store.data["status"]==="1" && <Box mb={2}><ActualReqFlag desc={true} item={this.store.data}/></Box>}
                     </Box>
                     </Box>
                     <Box mb={2}>
