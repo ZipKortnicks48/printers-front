@@ -9,11 +9,13 @@ import AuthorisationFormStore from './containers/AuthorisationForm/Authorisation
 import TableRequestStore from './containers/TableRequest/TableRequestStore'
 import DialogCreateReqStore from './containers/DialogCreateReq/DialogCreateReqStore'
 import RequestBodyStore from './containers/RequestBody/RequestBodyStore'
+import CommentPanelStore from './containers/CommentPannel/CommentPanelStore'
 const stores = {
   AuthorisationFormStore,
   TableRequestStore,
   DialogCreateReqStore,
   RequestBodyStore,
+  CommentPanelStore
 }
 ReactDOM.render(
   <BrowserRouter>
