@@ -36,7 +36,7 @@ class DialogCreateReqStore {
                 day = '0' + day;
             this.deadline = `${year + "-" + month + "-" + day}`
         } else { this.deadline = date }
-        console.log(this.deadline)
+        
     }
     _onCheckoutChange = (e) => { this.checkout = e.target.checked;  }
     _onPhoneChange=(e)=>{this.phone = e.target.value; }
@@ -47,7 +47,7 @@ class DialogCreateReqStore {
         this.successOpen = false
     }
     errorCallback = (errorMessage, code) => {
-        console.log(code)
+ 
         if (code === 401) {
             localStorage.removeItem('token')
             localStorage.removeItem('name')

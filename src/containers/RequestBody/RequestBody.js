@@ -8,6 +8,7 @@ class RequestBody extends React.Component {
     store = this.props.RequestBodyStore
     componentDidMount = () => {
         this.store.id = this.props.id
+        this.store.history=this.props.history
         this.store.getInfo()
     }
 
@@ -24,7 +25,7 @@ class RequestBody extends React.Component {
                     <Box mb={2}>
                         <Typography variant="body1" color="textPrimary">{this.store.data['description']}</Typography>
                     </Box>
-                    <Box fullWidth display="flex" justifyContent="flex-end"><Box display="flex" flexDirection="column">
+                    <Box display="flex" justifyContent="flex-end"><Box display="flex" flexDirection="column">
                         {this.store.data["checkout"]&&<Box mb={2}><CheckoutFlag /></Box>}
                                         {this.store.data["status"]==="3" && <Box mb={2}><FinishedFlag desc={true} item={this.store.data}/></Box>}
                                         {this.store.data["status"]==="2" && <Box mb={2}><ProcessReqFlag desc={true}  item={this.store.data}/></Box>}

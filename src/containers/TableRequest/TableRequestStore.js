@@ -19,7 +19,6 @@ export class TableRequestStore {
     }
     _pageChange=(event,value)=>{
         this.page=value
-        console.log(value)
         this.getCabinets()
     }
     _filterClick = async () => {
@@ -57,26 +56,31 @@ export class TableRequestStore {
         this.errorOpen=false;
     }
     getCabinets = async () => {
+        console.log("Получение заявок и кабинетов")
         const token = localStorage.getItem('token')
         this.tableLoader = true
         await getRequest("cities/cabinets/", { resolve: this.successCabinetCallback, reject: this.errorCallback }, token)
         await getRequest(`req/?offset=${(this.page-1)*this.limit}`, { resolve: this.successReqCallback, reject: this.errorCallback }, token)
-        this.tableLoader=false
     }
     successReqCallback = (data) => {
+        console.log("Заявки получены",data)
         this.reqs = data['results']
         this.count_pages=Math.ceil(data['count']/this.limit)
         if(this.count_pages===0) this.count_pages=1
-        console.log(this.count_pages)
+        console.log("Перещелкивание на фолс")
+        this.tableLoader=false
     }
     successCabinetCallback = (data) => {
+        console.log("Кабинеты получены")
         this.cabinets = data
     }
     errorCallback = (errorMessage, code) => {
         if(code===401){
             localStorage.removeItem('token')
             localStorage.removeItem('name')
-            this.history.push("/")
+            this.tableLoader=true
+            this.history.replace("/")
+            
         }
         this.errorText=errorMessage
         this.errorOpen = true
@@ -99,7 +103,7 @@ decorate(TableRequestStore,
         showClosedRequests:observable,
         cabinet:observable,
         page:observable,
-        
+        errorText:observable
     }
 )
 

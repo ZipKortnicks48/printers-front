@@ -1,11 +1,10 @@
 import React from 'react'
 import { ListItem, ListItemText, Box, Typography, ListItemSecondaryAction } from '@material-ui/core'
-import { DriveEta } from '@material-ui/icons'
-import { CheckCircle } from '@material-ui/icons'
-import {CheckoutFlag,FinishedFlag,ActualReqFlag,ProcessReqFlag} from '../../components/index'
+import {CheckoutFlag,FinishedFlag,ProcessReqFlag} from '../../components/index'
 export const TableReqItem = (props) => {
-    console.log("отрисовка")
+    
     if (props.items.length === 0) {
+        console.log("Это из TableReqItem",props.items)
         return (<React.Fragment>
             <Box p={2}>
                 <Typography color="textSecondary">{"Пусто"}</Typography>
@@ -13,6 +12,7 @@ export const TableReqItem = (props) => {
         </React.Fragment>)
     }
     else {
+        console.log("Это из TableReqItem",props.items)
         return (
             <React.Fragment>
                 {props.items.map(

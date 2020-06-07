@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputLabel, Select, MenuItem, FormControl, Box } from '@material-ui/core'
 const SelectComponent = (props) => {
-
+    console.log("Из селекта",props.items)
     return (
 
         <Box className={props.className}><FormControl style={{ minWidth: 120 }} spacing={3} >

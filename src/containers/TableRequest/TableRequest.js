@@ -11,20 +11,19 @@ import classNames from "./tablerequest.module.css"
 import {Pagination} from "@material-ui/lab"
 class TableRequest extends React.Component {
 
-
+    store = this.props.TableRequestStore
     componentDidMount = () => {
-        console.log("mount")
-        let store = this.props.TableRequestStore
-        store.history = this.props.history
-        store.getCabinets()
+        console.log("Дид маунт")
+        this.store.history = this.props.history
+        this.store.getCabinets()
     }
     _onReqClick=(id)=>{
         this.props.history.push(`requests/${id}`)
     }
-    store = this.props.TableRequestStore
+    
     render() {
-        console.log("уточнение страницы",this.store.page)
         if (this.store.tableLoader) { return (<CircularProgress />) } else {
+            console.log(this.store.reqs,"Это заявки1, а тэбллоадер", this.store.tableLoader)
             return (
                 <React.Fragment>
                     <Box mb={2}>
@@ -57,7 +56,7 @@ class TableRequest extends React.Component {
                         </List>
                     </Paper>
                     <Pagination page={this.store.page} onChange={this.store._pageChange} count={this.store.count_pages} shape="rounded" />
-                    <MessageSnackbar open={this.store.errorOpen} severity="error" onClose={this.store._errorClose} message={this.store.errorText} />
+                    {/* <MessageSnackbar open={this.store.errorOpen} severity="error" onClose={this.store._errorClose} message={this.store.errorText} /> */}
                 </React.Fragment>
             )
         }

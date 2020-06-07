@@ -15,15 +15,14 @@ export class AuthorisationFormStore{
     _passwordChange=event=>{
         this.password=event.target.value
     }
-    _logInClick=(history)=>{
+    _logInClick=async ()=>{
         this.buttonLoader=true
-        this.history=history
         const callbacks={
             resolve:this.successLogInCallback,
             reject:this.errorLogInCallback,
         }
         let data={name:this.username,password:this.password}
-        postRequest('user/auth/',data,callbacks)
+        await postRequest('user/auth/',data,callbacks)
     }
     _successClose=()=>{
         this.successOpen=false
@@ -33,11 +32,13 @@ export class AuthorisationFormStore{
     }
 
     successLogInCallback=(successMessage)=>{
-        this.successOpen=true
-        this.buttonLoader=false
+        console.log("Успешная авторизация")
         localStorage.setItem('token',`Bearer ${successMessage["token"]}`)
         localStorage.setItem('name',successMessage["name"])
+        console.log("Токен и имя получены")
+        console.log(this.history)
         this.history.push(pathes["listRequestsPath"])
+        this.buttonLoader=false
     }
     errorLogInCallback=(errorMessage, code)=>{
         this.errorOpen=true

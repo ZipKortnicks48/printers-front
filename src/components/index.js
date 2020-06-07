@@ -12,6 +12,7 @@ import {CheckoutFlag} from './CheckoutFlag/CheckoutFlag'
 import {FinishedFlag} from './FinishedFlag/FinishedFlag'
 import {ActualReqFlag} from './ActualReqFlag/ActualReqFlag'
 import {ProcessReqFlag} from './ProcessReqFlag/ProcessReqFlag'
+import CommentItem from './CommentItem/CommentItem'
 export {MessageSnackbar,RequestSearchField,DatePicker,CheckBox,SelectComponent,TableReqItem,ActualReqFlag,CheckoutFlag,FinishedFlag,
-    ProcessReqFlag,
+    ProcessReqFlag, CommentItem,
 }

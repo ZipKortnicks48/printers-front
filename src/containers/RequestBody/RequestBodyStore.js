@@ -1,5 +1,5 @@
 import { observable, action, decorate } from "mobx"
-import { postRequest, getRequest } from "../../utils/requests"
+import {  getRequest } from "../../utils/requests"
 
 class RequestBodyStore {
     loader=true
@@ -16,7 +16,6 @@ class RequestBodyStore {
         this.loader=false
     }
     errorCallback = (errorMessage, code) => {
-        console.log(code)
         if (code === 401) {
             localStorage.removeItem('token')
             localStorage.removeItem('name')

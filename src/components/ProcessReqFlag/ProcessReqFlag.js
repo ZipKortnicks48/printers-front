@@ -8,7 +8,9 @@ export const ProcessReqFlag = (props) => {
     </Box>
     <Box>
         {props.desc&&<Box mt={8}><Box><Typography variant="body1" style={{color:"green"}}>{`Исполнитель: ${props.item['executor']['surname']}`}</Typography></Box>
-        <Box><Typography variant="body1" color="textSecondary">{`Телефон: ${props.item['executor']['mobile_phone']}`}</Typography></Box></Box>}
+        <Box><Typography variant="body1" color="textSecondary">{`Телефон: ${props.item['executor']['mobile_phone']}`}</Typography>
+        <Typography variant="caption" color="textSecondary">{`Телефон отдела: ${props.item['executor']['phone']}`}</Typography>
+        </Box></Box>}
     </Box>
     </React.Fragment>
     )

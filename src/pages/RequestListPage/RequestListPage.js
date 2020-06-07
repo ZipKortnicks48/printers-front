@@ -14,9 +14,9 @@ class RequestListPage extends React.Component {
     }
     _modalOpen = () => {
         this.setState({modalOpen: true})
-        console.log('open modla')
     }
     render(){
+        console.log("Рендеринг страницы")
     return (
         <React.Fragment>
             <Box mb={4} display="flex" flexDirection="row" alignItems="center" fontSize={16} color="text.secondary">Вы вошли под пользователем:
@@ -29,7 +29,7 @@ class RequestListPage extends React.Component {
                     }}><ExitToAppIcon fontSize="small" /></Button>
                 </Box>
             </Box>
-            <TableRequest />
+            <TableRequest history={this.props.history}/>
             <Box mt={3} position="absolute">
                 <Button onClick={this._modalOpen} variant="contained" color="primary">Создать новую заявку</Button>
             </Box>
