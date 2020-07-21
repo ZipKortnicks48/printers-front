@@ -5,7 +5,7 @@ class DialogCreateReqStore {
 
     shortname = ""
     description = ""
-    cabinet = ""
+    cabinet = -1
     deadline = null
     checkout = false
     loader = false
@@ -14,7 +14,7 @@ class DialogCreateReqStore {
     successOpen = false
     errorText = ""
     history = {}
-    phone={}
+    phone=""
     getCabinets = async () => {
         const token = localStorage.getItem('token')
         this.loader = true
@@ -53,7 +53,7 @@ class DialogCreateReqStore {
             localStorage.removeItem('name')
             this.history.push("/")
         }
-        this.errorText = `Ошибка отправки ${code}`
+        this.errorText = `Возможно, не все обязательные поля заполнены. ${code}`
         this.errorOpen = true
     }
     _responseClick = async () => {

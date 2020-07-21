@@ -33,11 +33,11 @@ class RequestBody extends React.Component {
                     </Box>
                     </Box>
                     <Box mb={2}>
-                        <Typography variant="body1" color="textSecondary">{`Кабинет: ${this.store.data['cabinet']}`}</Typography>
+                        <Typography variant="body1" color="textSecondary">{`Кабинет: ${this.store.data['cabinet']['name']}`}</Typography>
                     </Box>
-                    <Box mb={2}>
+                    {this.store.data['deadline']!==null&&<Box mb={2}>
                         <Typography variant="body1" color="textSecondary">{`Планируемая дата выполнения: ${this.store.data['deadline']}`}</Typography>
-                    </Box>
+                    </Box>}
                     <Button variant="outlined" onClick={()=>{this.props.history.push('/requests')}}>{`<< Вернуться к списку заявок`}</Button>
                 </Box>
             </React.Fragment>

@@ -8,6 +8,7 @@ const CheckBox = (props) => {
                             
                             control={
                                 <Checkbox
+                                    
                                     onChange={props.onChange}
                                     color="primary"
                                     checked={props.checked}

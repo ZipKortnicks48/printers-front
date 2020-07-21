@@ -34,7 +34,7 @@ export class TableRequestStore {
         this.tableLoader=false
     }
     _dateChange = (date) => {
-        if (date !== null) {
+        if (date !== null && typeof(date)!==undefined) {
         this.date = date
             let month = '' + (date.getMonth() + 1)
             let day = '' + date.getDate()

@@ -25,6 +25,7 @@ import { CheckBox, DatePicker, SelectComponent, MessageSnackbar } from '../../co
                         margin="dense"
                         label="Название заявки"
                         fullWidth
+                        value={this.store.shortname}
                         onChange={this.store._onNameChange}
                     />
                     <Box display="flex" flexDirection="column">
@@ -35,6 +36,7 @@ import { CheckBox, DatePicker, SelectComponent, MessageSnackbar } from '../../co
                         multiline
                         rows={6}
                         variant="outlined"
+                        value={this.store.description}
                         onChange={this.store._onDescChange}
                     />
                     </Box>
@@ -42,7 +44,7 @@ import { CheckBox, DatePicker, SelectComponent, MessageSnackbar } from '../../co
                     <Typography  variant="caption">Выберите кабинет</Typography>
                     </Box>
                     <SelectComponent  items={this.store.cabinets} onChange={this.store._onCabinetChange} value={this.store.cabinet} label="Кабинет" />
-                    <DatePicker label="Крайний срок" onChange={this.store._onDeadlineChange} value={this.store.deadline}/>
+                    <DatePicker label="Крайний срок (необязательно)" onChange={this.store._onDeadlineChange} value={this.store.deadline}/>
                     <CheckBox onChange={this.store._onCheckoutChange} value={this.store.checkout} label="Запланировать выезд"></CheckBox>
                     <Box mb={1}>
                     <Typography   variant="caption">Укажите телефон, что мы могли Вам перезвонить</Typography>
@@ -52,11 +54,12 @@ import { CheckBox, DatePicker, SelectComponent, MessageSnackbar } from '../../co
                         label="Телефон для связи"
                         rows={6}
                         variant="outlined"
+                        value={this.store.phone}
                         onChange={this.store._onPhoneChange}
                     />
                     </Box>
                     <MessageSnackbar open={this.store.errorOpen} severity="error" onClose={this.store._errorClose} message={this.store.errorText} />
-                    <MessageSnackbar open={this.store.successOpen} severity="success" onClose={this.store._successClose} message="Заявка отправлена." />
+                    <MessageSnackbar open={this.store.successOpen} severity="success" onClose={this.store._successClose} message="Заявка отправлена. Закройте окно создания заявки и обновите страницу." />
 
                 </DialogContent>
                 <DialogActions>
