@@ -13,17 +13,37 @@ class PrinterPanelStore {
     problemText=""
     successOpen=false
     selectedPrinter=""
+    page=1;
+    limit=4
+    count_pages=1;
     _successClose=()=>{this.successOpen=false}
     _errorClose=()=>{this.errorOpen=false}
     _problemChange=(e)=>{this.problemText=e.target.value}
     _modalOpen=()=>{this.modalOpen=true}
     _modalClose=()=>{this.modalOpen=false}
+    _pageChange=(event,value)=>{
+        this.page=value
+        this.getInfo()
+    }
     getInfo=async()=>{
         this.loader=true
-        let url=`printers/`
+        let url=`printers/?limit=${this.limit}&offset=${(this.page-1)*this.limit}`
         let token=localStorage.getItem('token')
-        await getRequest(url,{resolve:(data)=>{this.data=data['results'];console.log("Принтеры",this.data)},reject:this.errorCallback},token)
+        await getRequest(url,{resolve:(data)=>{this.data=data['results'];console.log("Принтеры",this.data);this.count_pages=Math.ceil(data['count']/this.limit)},reject:this.errorCallback},token)
         this.loader=false
+    }
+    orderCartridge=async(printer)=>{
+        this.loader=true
+        let url='printers/order/'
+        let token=localStorage.getItem('token')
+        await postRequest(url,{"printer":printer},{resolve:this.successOrder,reject:this.errorCallback},token)
+        this.loader=false
+    }
+    successOrder=async()=>{
+        this.modalOpen=false
+        await this.getInfo()
+        this.successText="Картридж заказан"
+        this.successOpen=true
     }
     sendInfo=async()=>{
         this.loader=true
@@ -58,8 +78,11 @@ decorate(PrinterPanelStore,
         modalOpen:observable,
         problemText:observable,
         selectedPrinter:observable,
+        page:observable,
+        limit:observable,
         _problemChange:action,
         getInfo: action,
+        _pageChange:action,
         _modalClose:action,
         _modalOpen:action,
         _errorClose:action,

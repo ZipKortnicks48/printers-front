@@ -12,7 +12,7 @@ class CommentPanel extends React.Component {
     }
     render() {
 
-        if (this.store.loader) return (<CircularProgress />); else return (
+        if (this.store.loader) return (<React.Fragment><Box height="100vh" display="flex" justifyContent="center" alignItems="center"><CircularProgress /></Box></React.Fragment>); else return (
             <React.Fragment>
                 <Box p={4}>
                     <Paper>

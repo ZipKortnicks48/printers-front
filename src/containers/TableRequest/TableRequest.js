@@ -22,7 +22,7 @@ class TableRequest extends React.Component {
     }
     
     render() {
-        if (this.store.tableLoader) { return (<CircularProgress />) } else {
+        if (this.store.tableLoader) { return (<React.Fragment><Box height="100vh" display="flex" justifyContent="center" alignItems="center"><CircularProgress /></Box></React.Fragment>) } else {
             console.log(this.store.reqs,"Это заявки1, а тэбллоадер", this.store.tableLoader)
             return (
                 <React.Fragment>
@@ -34,7 +34,7 @@ class TableRequest extends React.Component {
                                         onClick={(event) => event.stopPropagation()}
                                         onFocus={(event) => event.stopPropagation()}
                                         control={<RequestSearchField
-                                            onClick={this.store._filterClick}
+                                            onClick={()=>{this.store.page=1;this.store._filterClick()}}
                                             onChange={this.store._searchwordChange}
                                             value={this.store.searchword}
                                             placeholder="Введите название или номер заявки" />
@@ -55,7 +55,7 @@ class TableRequest extends React.Component {
                             <TableReqItem onClick={this._onReqClick} items={this.store.reqs} />
                         </List>
                     </Paper>
-                    <Pagination page={this.store.page} onChange={this.store._pageChange} count={this.store.count_pages} shape="rounded" />
+                    <Pagination page={this.store.page} onChange={this.store._pageChange} count={this.store.count_pages} />
                     {/* <MessageSnackbar open={this.store.errorOpen} severity="error" onClose={this.store._errorClose} message={this.store.errorText} /> */}
                 </React.Fragment>
             )

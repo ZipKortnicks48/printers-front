@@ -6,6 +6,7 @@ import { Box, Button, Dialog } from '@material-ui/core'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { withRouter } from "react-router"
 import { DialogCreateReq,PrinterPanel } from "../../containers/index"
+import {CartridgePage} from "../index"
 class RequestListPage extends React.Component {
     state = {
         modalOpen: false,
@@ -46,7 +47,7 @@ class RequestListPage extends React.Component {
                     >
                         <Tab label="Заявки в ИТ-отдел" {...this.a11yProps(0)} />
                         <Tab label="Принтеры" {...this.a11yProps(1)} />
-                        <Tab label="Картриджи (в разработке)" {...this.a11yProps(2)} />
+                        <Tab label="Картриджи" {...this.a11yProps(2)} />
                     </Tabs>
                 </AppBar>
                 <Box mb={4} display="flex" flexDirection="row" alignItems="center" fontSize={16} color="text.secondary">Вы вошли под пользователем:
@@ -86,9 +87,9 @@ class RequestListPage extends React.Component {
                     hidden={2 !== this.state.indexTab}
                     id={`full-width-tabpanel-${this.state.indexTab}`}
                     aria-labelledby={`full-width-tab-${this.state.indexTab}`}
-                    
+                    style={{width:"100%"}}
                 >
-                    <div style={{"color":"black"}}>Раздел будет доступен в следующих релиз</div>
+                    <CartridgePage history={this.props.history}/>
                 </div>
                 <Dialog open={this.state.modalOpen} onClose={this._modalClose}>
                     <Box>

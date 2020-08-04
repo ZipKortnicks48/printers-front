@@ -4,6 +4,7 @@ import {
     CircularProgress, ListItem, TextField, Dialog,
     DialogContent, DialogTitle, DialogActions, ListItemSecondaryAction, Box, Typography, Button, DialogContentText,
 } from '@material-ui/core'
+import {Pagination} from '@material-ui/lab'
 import {MessageSnackbar} from "../../components/index"
 class PrinterPanel extends React.Component {
     store = this.props.PrinterPanelStore
@@ -14,9 +15,9 @@ class PrinterPanel extends React.Component {
     }
     render() {
 
-        if (this.store.loader) { return (<CircularProgress />) } else return (
+        if (this.store.loader) { return (<React.Fragment><Box height="100vh" display="flex" justifyContent="center" alignItems="center"><CircularProgress /></Box></React.Fragment>) } else return (
             <React.Fragment>
-                {this.store.data.map((item, index) => <React.Fragment key={`index-printer-item-${index}`}>
+                {this.store.data.map((item, index) => <Box key={`index-printer-item-${index}`}>
                     <ListItem button divider={index !== (this.store.data.length - 1)}>
                         <Box color="text.primary" display="flex" flexDirection="column">
                             <Box display="flex" alignItems="center"><Box mr={1} fontSize={16}> {item["printer"]["producer"]["name"]+" "+item["printer"]["name"]}</Box>
@@ -32,12 +33,15 @@ class PrinterPanel extends React.Component {
                             <Typography variant="caption" color="textSecondary">{`Кабинет:${item["cabinet"]["name"]}`}</Typography>
                         </Box>
                         <ListItemSecondaryAction>
-                            <Box display="flex">
+                            <Box pt={4} display="flex" flexDirection="column" justifyContent="space-between">
                                 {item["status"] === 1 && <Button onClick={()=>{this.store._modalOpen();this.store.selectedPrinter=String(item["id"])}} variant="outlined" size="small" >Сообщить о проблеме</Button>}
+                                <Box>{item["status_cartridge"]?<Button variant="outlined" size="small" onClick={()=>this.store.orderCartridge(String(item["id"]))}>Заказать картридж </Button>:
+                                <Button size="small" disabled>Картридж заказан</Button>}</Box>
                             </Box>
                         </ListItemSecondaryAction>
                     </ListItem>
-                </React.Fragment>)}
+                </Box>)}
+                <Pagination page={this.store.page} onChange={this.store._pageChange} count={this.store.count_pages} />
                 <Dialog open={this.store.modalOpen} onClose={this.store._modalClose}>
                     <Box>
                         <DialogTitle>Опишите поломку</DialogTitle>

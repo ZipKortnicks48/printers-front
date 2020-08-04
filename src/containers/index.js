@@ -4,4 +4,6 @@ import DialogCreateReq from './DialogCreateReq/DialogCreateReq'
 import RequestBody from './RequestBody/RequestBody'
 import CommentPanel from './CommentPannel/CommentPanel'
 import PrinterPanel from './PrintersPanel/PrintersPanel'
-export {AuthorisationForm,TableRequest,DialogCreateReq,RequestBody,CommentPanel,PrinterPanel}
+import CartridgeTable from './CartridgeTable/CartridgeTable'
+import CartridgeOrderTable from './CartridgeOrderTable/CartridgeOrderTable'
+export {AuthorisationForm,TableRequest,DialogCreateReq,RequestBody,CartridgeTable,CommentPanel,PrinterPanel,CartridgeOrderTable}
