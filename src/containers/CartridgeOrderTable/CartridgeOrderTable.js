@@ -10,7 +10,7 @@ export default class CartridgeOrderTable extends React.Component {
     state = {
         data: [],
         loader: true,
-        limit:4,
+        limit:10,
     }
     componentDidMount = () => {
         let token = localStorage.getItem("token")

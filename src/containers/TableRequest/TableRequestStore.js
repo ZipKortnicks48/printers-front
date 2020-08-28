@@ -12,7 +12,7 @@ export class TableRequestStore {
     errorText="";
     errorOpen=false;
     page=1;
-    limit=4
+    limit=10
     count_pages=1;
     _searchwordChange = (e) => {
         this.searchword = e.target.value

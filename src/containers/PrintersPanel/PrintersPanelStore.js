@@ -14,7 +14,7 @@ class PrinterPanelStore {
     successOpen=false
     selectedPrinter=""
     page=1;
-    limit=4
+    limit=10
     count_pages=1;
     _successClose=()=>{this.successOpen=false}
     _errorClose=()=>{this.errorOpen=false}

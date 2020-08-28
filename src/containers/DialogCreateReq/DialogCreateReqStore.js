@@ -53,7 +53,7 @@ class DialogCreateReqStore {
             localStorage.removeItem('name')
             this.history.push("/")
         }
-        this.errorText = `Возможно, не все обязательные поля заполнены. ${code}`
+        this.errorText = `Возможно, не все обязательные поля заполнены, либо заполнены неверно. ${code}`
         this.errorOpen = true
     }
     _responseClick = async () => {

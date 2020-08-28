@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import {MessageSnackbar} from '../../components'
 import {getRequest} from '../../utils/requests'
 import {CircularProgress,Box,Paper} from '@material-ui/core'
 import { isThisSecond } from "date-fns"
@@ -6,11 +7,16 @@ export default class CartridgeTable extends React.Component{
    state={
        data:[],
        loader:true,
+       errorText:'',
+       errorOpen:false
    }
     componentDidMount=()=>{
         let token=localStorage.getItem("token")
         getRequest('printers/cartridges/',{resolve:(data)=>{this.successCartridges(data)},reject:()=>{this.setState({loader:false})}},token)
         // this.setState({loader:false})
+   }
+   _errorClose=()=>{
+       this.setState({errorOpen:false})
    }
    successCartridges=(data)=>{
         this.setState({data:data['results'],loader:false})

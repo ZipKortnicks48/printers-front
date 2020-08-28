@@ -51,7 +51,7 @@ import { CheckBox, DatePicker, SelectComponent, MessageSnackbar } from '../../co
                     </Box>
                     <TextField
                         fullWidth
-                        label="Телефон для связи"
+                        label="Только цифры, без лишних символов"
                         rows={6}
                         variant="outlined"
                         value={this.store.phone}
